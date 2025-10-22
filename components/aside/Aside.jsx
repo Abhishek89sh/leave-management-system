@@ -1,54 +1,71 @@
 "use client"
 
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
-import { FaHome, FaRegUser } from 'react-icons/fa'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+
 
 import styles from './aside.module.css'
-import Icon from '../Icon'
+import { adminNavBtns, facultyNavBtns, hodNavBtns, principalNavBtns } from '@/content/nav-buttons'
+import { useRouter } from 'next/navigation'
+import { FaRegUser } from 'react-icons/fa'
+import { MdClose } from 'react-icons/md'
+import { NavControlerContext } from '../../Context/NavControlerProvider'
 
-function Aside() {
+function Aside({ type }) {
+  const router = useRouter();
   const [profileImg, setProfileImg] = useState(null);
-  const asideButtons = useRef();
+  const [btns, setBtns] = useState([]);
+  const asideBar = useRef();
+  
+  const {show, setShow} = useContext(NavControlerContext);
   const toggeImg = ()=>{
     if(!profileImg){
-      setProfileImg("/assets/images/developer.jpeg")
+      setProfileImg("/assets/images/developer.jpeg");
     }else{
-      setProfileImg(null)
+      setProfileImg(null);
     }
   }
-  const applyScroll = ()=>{
-    var scrollY = window.scrollY;
-    if(scrollY >= 85){
-      asideButtons.current.style.overflowY = "scroll"
+
+  const modifyBtns = ()=>{
+    if(type === "faculty"){
+      setBtns(facultyNavBtns);
+    }else if(type === "principal"){
+      setBtns(principalNavBtns)
+    }else if(type === "hod"){
+      setBtns(hodNavBtns)
+    }else if(type === "admin"){
+      setBtns(adminNavBtns)
     }else{
-      asideButtons.current.style.overflowY = "hidden"
+      
     }
   }
-  window.addEventListener("scroll", applyScroll);
 
   useEffect(()=>{
-    applyScroll()
+    modifyBtns();
   }, [])
   return (
-    <aside className={styles.aside}>
-      <div className={styles.asideInner}>
-        <section className={styles.sec1}>
-            <span onClick={toggeImg}>
-                {profileImg?<Image src={profileImg} width={90} height={90} alt='User Images' />: <FaRegUser size={90} />}
-            </span>
-            <h2>Abhishek</h2>
-        </section>
-        <section ref={asideButtons} className={styles.sec2}>
-         {["Dashboard", "Users", "HODs", "Principles", "Requests", "Leaves", "Dashboard", "Users", "HODs", "Principles", "Requests", "Leaves", "Dashboard", "Users", "HODs", "Principles", "Requests", "Leaves", ].map((item, index)=>(
-          <div key={index}>
-            <span><Icon name={"FaHome"} lib={"fa"} color="#000" /></span>
-            <p>{item}</p>
-          </div>
-         ))}
-        </section>
-      </div>
-    </aside>
+    <>
+      <aside ref={asideBar} className={`${styles.aside} ${!show ? styles.asideHide : styles.asideShow}`}>
+        <div onClick={()=>setShow(false)} className={`${styles.close}`}><MdClose size={30} /></div>
+        <div className={styles.asideInner}>
+          <section className={styles.sec1}>
+              <span onClick={toggeImg}>
+                  {profileImg?<Image src={profileImg} width={90} height={90} alt='User Images' />: <FaRegUser size={90} />}
+              </span>
+              <h2>Abhishek</h2>
+          </section>
+          <section className={styles.sec2}>
+           {btns.map((item, index)=>(
+            <div onClick={()=>{router.push(item.onClick); setTimeout(()=>setShow(false), 500)}} key={index}>
+              <span>{item.icon}</span>
+              <p>{item.name}</p>
+            </div>
+           ))}
+          </section>
+        </div>
+      </aside>
+      <div></div>
+    </>
   )
 }
 

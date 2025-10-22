@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: var(--background);
+  color: var(--p-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.left {
+  position: relative;
+  flex: 1.2;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+}
+
+.bgImage {
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+.formBox {
+  width: 80%;
+  max-width: 380px;
+  background: var(--surface);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+.formBox h1 {
+  font-size: 28px;
+  color: var(--p-text);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--s-text);
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup input,
+.inputGroup select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  background: var(--background);
+  color: var(--p-text);
+  transition: all 0.2s ease;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--secondary)33;
+}
+
+.loginBtn {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.loginBtn:hover {
+  background: var(--secondary);
+}
+
+.footerText {
+  font-size: 14px;
+  color: var(--s-text);
+  margin-top: 18px;
+}
+
+.footerText a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footerText a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    height: 60vh;
+  }
+
+  .formBox {
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,123 @@
+.formContainer {
+  background: var(--surface);
+  color: var(--p-text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  /* max-width: 600px; */
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, color 0.3s ease;
+  animation: fadeInForm 0.3s ease-in-out;
+}
+
+.formContainer label {
+  font-size: 0.95rem;
+  color: var(--s-text);
+  font-weight: 500;
+}
+
+.formContainer input,
+.formContainer select,
+.formContainer textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--p-text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.formContainer input:focus,
+.formContainer select:focus,
+.formContainer textarea:focus {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+.formContainer textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formContainer input[type="date"] {
+  cursor: pointer;
+}
+
+.formContainer input:hover,
+.formContainer select:hover,
+.formContainer textarea:hover {
+  border-color: var(--secondary);
+}
+
+/* 🔹 Submit Button Styling */
+.formContainer button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.formContainer button:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.formContainer button:active {
+  transform: translateY(0);
+  background: var(--primary);
+}
+
+.inputBtn{
+  display: flex;
+  gap: 3%;
+}
+
+.inputBtn button{
+  width: 25%;
+}
+
+.inputBtn input{
+  width: 72%;
+}
+
+.twoBtns{
+  display: flex;
+  justify-content: center;
+  gap: 3%;
+}
+
+.twoBtns button{
+  width: 50%;
+}
+
+.twoBtns button:nth-child(1){
+  background-color: rgb(161, 11, 11);
+}
+
+.twoBtns button:nth-child(2){
+  background-color: rgb(130, 124, 2);
+}
+
+/* 🔹 Fade-in animation */
+@keyframes fadeInForm {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

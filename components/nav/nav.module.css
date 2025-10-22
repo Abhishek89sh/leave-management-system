@@ -1,4 +1,4 @@
-.nav{
+.nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -7,16 +7,19 @@
     padding-bottom: 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+    position: sticky;
+    top: -90px;
+    z-index: 995;
 }
 
-.nav div:nth-child(2){
+.nav div:nth-child(2) {
     display: flex;
     justify-content: right;
     gap: 10px;
     align-items: center;
 }
 
-.nav div span{
+.nav div span {
     background-color: var(--background);
     padding: 8px;
     border-radius: 50%;
@@ -26,7 +29,7 @@
     cursor: pointer;
 }
 
-.nav div section{
+.nav div section {
     display: flex;
     background-color: var(--background);
     align-items: center;
@@ -38,17 +41,31 @@
     cursor: pointer;
 }
 
-.nav div section p{
+.nav div section p {
     opacity: 0.8;
 }
 
-@media screen and (max-width: 950px){
-    .nav div section p{
+.nav div:nth-child(1) {
+    display: flex;
+    align-items: center;
+}
+
+.bars {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .nav div section p {
         display: none;
     }
-    .nav div section{
+
+    .nav div section {
         border-radius: 50%;
         width: max-content;
         padding: 8px;
+    }
+
+    .bars {
+        display: unset;
     }
 }

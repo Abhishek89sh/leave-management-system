@@ -6,3 +6,8 @@ export var commonDetails = {
     logo: "/assets/images/logo.png",
     logoText: "/assets/images/logo-text-white.png"
 }
+
+export const imgs = {
+    loginPageImg: "/assets/images/gph-img.jpg",
+    aboutLoginPageImg: "Government Polutechnic Hamirpur Image", 
+}

@@ -1,0 +1,60 @@
+.tableContainer {
+  background: var(--surface);
+  color: var(--p-text);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--border);
+  overflow-x: auto;
+  margin-top: -20px;
+  width: 95%;
+}
+
+.tableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tableContainer table th,
+.tableContainer table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.tableContainer table th {
+  background: var(--secondary);
+  color: var(--background);
+  font-weight: 600;
+}
+
+.tableContainer table tr:hover {
+  background: var(--background);
+}
+
+.btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tableContainer button {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.tableContainer button.accept {
+  background: var(--success);
+}
+
+.tableContainer button.reject {
+  background: var(--error);
+}
+
+.tableContainer button:hover {
+  opacity: 0.85;
+}
+

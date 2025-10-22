@@ -1,0 +1,177 @@
+.filterBar {
+  width: 95%;
+  background: var(--surface);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: -20px;
+  margin-bottom: 50px;
+  box-shadow: 1px 1px 2px 2px var(--border);
+  border-radius: 8px;
+}
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface);
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--p-text);
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--s-text);
+}
+
+.searchBtn,
+.filterBtn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.searchBtn {
+  background: var(--primary);
+  color: white;
+}
+
+.searchBtn:hover {
+  background: var(--success);
+}
+
+.filterBtn {
+  background: var(--secondary);
+  color: var(--p-text);
+}
+
+.filterBtn:hover {
+  opacity: 0.9;
+}
+
+.popUpSec{
+  width: 100%;
+}
+
+.filterPopup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 65%;
+  margin-left: 34%;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+  padding: 16px;
+  z-index: 1000;
+}
+
+@keyframes slideUp {
+  from {
+    bottom: -100%;
+  }
+  to {
+    bottom: 0;
+  }
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--p-text);
+  margin-bottom: 10px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--p-text);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filterGroup label {
+  display: block;
+  color: var(--p-text);
+  margin-bottom: 6px;
+}
+
+.filterGroup select,
+.filterGroup input[type="checkbox"] {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--p-text);
+}
+
+.applyBtn {
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.applyBtn:hover {
+  background: var(--success);
+}
+
+@media (max-width: 600px) {
+  .searchSection {
+    flex-direction: column;
+  }
+
+  .searchInput{
+    width: 100%;
+  }
+
+  .searchBtn,
+  .filterBtn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .filterPopup {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-left: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+  padding: 16px;
+  z-index: 1000;
+}
+}

@@ -1,0 +1,169 @@
+.settingsContainer {
+  width: 95%;
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: var(--surface);
+  color: var(--p-text);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, color 0.3s ease;
+  margin-top: -20px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 10px;
+}
+
+.form input{
+  padding: 10px;
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 5px;
+}
+
+.form button{
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  border: none;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.form button:active{
+  background-color: var(--secondary);
+  transform: translateY(-5px);
+}
+
+/* Profile Section */
+.profileSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.profileImage {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  object-fit: cover;
+}
+
+.changeImageBtn {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.changeImageBtn:hover {
+  background-color: var(--secondary);
+}
+
+/* Theme Section */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--p-text);
+}
+
+.themeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.themeBtn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.themeBtn:hover {
+  background-color: var(--secondary);
+}
+
+/* Notifications */
+.notifHeader {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 10px 10px 0 0;
+}
+
+.notifRow {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--surface);
+  transition: background 0.2s;
+}
+
+.notifRow:last-child {
+  border-radius: 0 0 10px 10px;
+  border-bottom: none;
+}
+
+.notifRow:hover {
+  background-color: var(--background);
+}
+
+.notifRow input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settingsContainer {
+    padding: 1rem;
+  }
+
+
+  .profileSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .changeImageBtn {
+    width: 100%;
+  }
+}

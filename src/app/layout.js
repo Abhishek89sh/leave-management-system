@@ -1,7 +1,8 @@
 // import { Geist, Geist_Mono } from "next/font/google";
 import { commonDetails } from "@/content/main";
 import "./globals.css";
-import ThemeProvider from "../../components/Context/ThemeProvider";
+import ThemeProvider from "../../Context/ThemeProvider";
+import SelectUserProvider from "../../Context/selectUser/SelectUserProvider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -22,9 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <html className="light" lang="en">
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <SelectUserProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </SelectUserProvider>
       </body>
     </html>
   );

@@ -1,10 +1,24 @@
-import React from 'react'
+"use client"
 
-async function page({params}) {
-  const data = await params;
+import React, { useEffect } from 'react'
+import DashBoxes from '../../../../components/dashBoxes/DashBoxes';
+import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider';
+
+function page({params}) {
+  const {type} = React.use(params);
+  const selectUser = useSelectUser();
+  const test = async ()=>{
+    let selectedUser = await selectUser("Select Your Head");
+    console.log(selectedUser);
+  }
+  useEffect(()=>{
+    test()
+  }, [])
   return (
     <>
-      <h1>{data.type} Dashboard</h1>
+      <div style={{width: '100%'}}>
+        <DashBoxes type={type} />
+      </div>
     </>
   )
 }
