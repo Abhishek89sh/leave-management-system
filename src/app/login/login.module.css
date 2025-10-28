@@ -108,6 +108,12 @@
   text-decoration: underline;
 }
 
+.errMsg{
+  text-align: left;
+  margin-left: 10px;
+  color: var(--error);
+}
+
 /* Responsive */
 @media (max-width: 800px) {
   .container {

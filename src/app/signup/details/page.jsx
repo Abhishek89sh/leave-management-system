@@ -36,6 +36,15 @@ function page() {
 
           <div>
             <div className={styles.inputGroup}>
+              <select required>
+                <option value="">Select Account Type</option>
+                <option value="faculty">Faculty</option>
+                <option value="hod">HOD</option>
+                <option value="principal">Principal</option>
+              </select>
+            </div>
+            
+            <div className={styles.inputGroup}>
               <input type="text" value={headId} onChange={(e)=>setHeadId(e.target.value)} placeholder="Enter ID Manually" required />
             </div>
 

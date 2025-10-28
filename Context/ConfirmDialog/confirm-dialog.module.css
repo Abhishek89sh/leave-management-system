@@ -19,12 +19,14 @@
   width: 300px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: boxIn 0.3s ease-in;
 }
 
 .dialogBox span {
   margin-top: 15px;
   display: flex;
   justify-content: space-around;
+  flex-direction: row-reverse;
 }
 
 .dialogBox button {
@@ -35,15 +37,27 @@
 }
 
 .dialogBox button:nth-child(1) {
-  background: #888;
+  background: var(--primary);
   color: white;
 }
 
 .dialogBox button:nth-child(2) {
-  background: #0088cc;
+  background: #888;
   color: white;
 }
 
 .dialogBox button:hover {
   background: var(--primary);
+}
+
+@keyframes boxIn{
+  0%{
+    scale: 0.8;
+  }
+  80%{
+    scale: 1.2;
+  }
+  100%{
+    scale: 1;
+  }
 }

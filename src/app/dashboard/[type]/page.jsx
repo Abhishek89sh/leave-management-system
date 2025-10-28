@@ -7,13 +7,6 @@ import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider
 function page({params}) {
   const {type} = React.use(params);
   const selectUser = useSelectUser();
-  const test = async ()=>{
-    let selectedUser = await selectUser("Select Your Head");
-    console.log(selectedUser);
-  }
-  useEffect(()=>{
-    test()
-  }, [])
   return (
     <>
       <div style={{width: '100%'}}>
