@@ -3,6 +3,7 @@ import { commonDetails } from "@/content/main";
 import "./globals.css";
 import ThemeProvider from "../../Context/ThemeProvider";
 import SelectUserProvider from "../../Context/selectUser/SelectUserProvider";
+import ConfirmDialogProvider from "../../Context/ConfirmDialog/ConfirmDialogProvider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -23,11 +24,13 @@ export default function RootLayout({ children }) {
   return (
     <html className="light" lang="en">
       <body>
-        <SelectUserProvider>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </SelectUserProvider>
+        <ConfirmDialogProvider>
+          <SelectUserProvider>
+            <ThemeProvider>
+              {children}
+            </ThemeProvider>
+          </SelectUserProvider>
+        </ConfirmDialogProvider>
       </body>
     </html>
   );

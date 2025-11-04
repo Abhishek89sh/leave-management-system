@@ -30,6 +30,20 @@
   background: var(--background);
 }
 
+.formBox label {
+  font-size: 0.95rem;
+  color: var(--p-text);
+  font-weight: 500;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.formBox span{
+  width: 100%;
+  display: flex;
+}
+
+
 .formBox {
   width: 80%;
   max-width: 380px;
@@ -106,6 +120,12 @@
 
 .footerText a:hover {
   text-decoration: underline;
+}
+
+.errMsg{
+  text-align: left;
+  margin-left: 10px;
+  color: var(--error);
 }
 
 /* Responsive */

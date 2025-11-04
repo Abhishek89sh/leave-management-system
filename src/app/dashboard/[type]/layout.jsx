@@ -1,13 +1,11 @@
 import Aside from "../../../../components/aside/Aside"
 import NavControlerProvider from "../../../../Context/NavControlerProvider";
 import Nav from "../../../../components/nav/Nav"
-import ConfirmDialogProvider from "../../../../Context/ConfirmDialog/ConfirmDialogProvider";
 
 export default async function AdminLayout({children, params}){
     const {type} = await params;
     return(
         <>
-          <ConfirmDialogProvider>
             <NavControlerProvider>
                 <Nav type={type} />
                 <div className="dashLayout">
@@ -19,7 +17,6 @@ export default async function AdminLayout({children, params}){
                     </div>
                 </div>
             </NavControlerProvider>
-          </ConfirmDialogProvider>
         </>
     )
 }

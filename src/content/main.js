@@ -11,3 +11,11 @@ export const imgs = {
     loginPageImg: "/assets/images/gph-img.jpg",
     aboutLoginPageImg: "Government Polutechnic Hamirpur Image", 
 }
+
+export const departments = [
+    "Computer Engineering", 
+    "Information Technology",
+    "Civil Engineering",
+    "Mechanical Engineering",
+    "Electrical Engineering",
+]

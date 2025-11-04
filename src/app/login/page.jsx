@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import styles from './login.module.css'
 import Link from 'next/link'
+import LoginForm from '../../../components/LoginForm'
 
 function LoginPage() {
   return (
@@ -21,17 +22,7 @@ function LoginPage() {
           <h1>Welcome Back</h1>
           <p className={styles.subtitle}>Login to continue to your account</p>
 
-          <form>
-            <div className={styles.inputGroup}>
-              <input type="email" placeholder="Email address" required />
-            </div>
-
-            <div className={styles.inputGroup}>
-              <input type="password" placeholder="Password" required />
-            </div>
-
-            <button type="submit" className={styles.loginBtn}>Login</button>
-          </form>
+          <LoginForm />
 
           <p className={styles.footerText}>
             New here? <Link href="/signup">Create an account</Link>

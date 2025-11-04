@@ -151,5 +151,11 @@ a {
   min-height: 95vh;
 }
 
+.errMsg{
+  text-align: left;
+  margin-left: 10px;
+  color: var(--error);
+}
+
 
 

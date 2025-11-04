@@ -43,7 +43,7 @@ function DataTable({
                         )}
                         {showOneBtn && (
                             <td className={styles.btns}>
-                                <button className={styles.accept} onClick={onAccept}>{acceptText}</button>
+                                <button className={styles.accept} onClick={()=>onAccept(item.id)}>{acceptText}</button>
                             </td>
                         )}
                     </tr>

@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react'
 import DashBoxes from '../../../../components/dashBoxes/DashBoxes';
-import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider';
 
 function page({params}) {
   const {type} = React.use(params);
