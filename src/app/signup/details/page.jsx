@@ -1,5 +1,6 @@
 "use client"
 
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 
 import styles from '../../login/login.module.css'
@@ -133,6 +134,26 @@ function page() {
   return (
     <div className={styles.container}>
         {loading && <div className='loaderBox fullTop'><Loader /></div>}
+=======
+import React, { useState } from 'react'
+
+import styles from '../../login/login.module.css'
+import { imgs } from '@/content/main'
+import Image from 'next/image'
+import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider'
+
+function page() {
+  const [headId, setHeadId] = useState("");
+  const [validated, setValidated] = useState(false);
+  
+  const selectUser = useSelectUser();
+  const selectBtnClick = async ()=>{
+    let selectedUser = await selectUser("Select Your Head");
+    setHeadId(selectedUser)
+  }
+  return (
+    <div className={styles.container}>
+>>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
         <div className={styles.left}>
           <Image
             src={imgs.loginPageImg}
@@ -144,6 +165,7 @@ function page() {
 
       <div className={styles.right}>
         <div className={styles.formBox}>
+<<<<<<< HEAD
           <h1>Details</h1>
           <p className={styles.subtitle}>
             Enter Your Details To Continue
@@ -180,16 +202,46 @@ function page() {
 
             {validated?(
                 <button onClick={updateData} className={styles.loginBtn}>
+=======
+          <h1>Select Your Head</h1>
+          <p className={styles.subtitle}>
+            HOD/Principle who accepts or rejects your Leave Requests
+          </p>
+
+          <div>
+            <div className={styles.inputGroup}>
+              <select required>
+                <option value="">Select Account Type</option>
+                <option value="faculty">Faculty</option>
+                <option value="hod">HOD</option>
+                <option value="principal">Principal</option>
+              </select>
+            </div>
+            
+            <div className={styles.inputGroup}>
+              <input type="text" value={headId} onChange={(e)=>setHeadId(e.target.value)} placeholder="Enter ID Manually" required />
+            </div>
+
+            {validated?(
+                <button className={styles.loginBtn}>
+>>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
                     Submit Request
                 </button>
             ):(
                 <>
                 {headId.length === 0?(
                     <button onClick={selectBtnClick} className={styles.loginBtn}>
+<<<<<<< HEAD
                       Search For Head Id
                     </button>
                 ):(
                     <button onClick={validateId} className={styles.loginBtn}>
+=======
+                      Search For Id
+                    </button>
+                ):(
+                    <button className={styles.loginBtn}>
+>>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
                       Validate ID
                     </button>
                 )}

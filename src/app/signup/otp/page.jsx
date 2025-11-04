@@ -45,7 +45,10 @@ function page() {
     })
     let data = await res.json();
     if(data.success){
+<<<<<<< HEAD
       localStorage.removeItem("signUpData")
+=======
+>>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
       router.push("/signup/details");
     }else{
       setErrMsg(data.message);
