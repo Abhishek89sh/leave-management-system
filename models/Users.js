@@ -39,6 +39,10 @@ const UsersSchema = new mongoose.Schema(
             type: Boolean,
             default: false
         },
+        status: {
+            type: String,
+            default: "pending"
+        }
     },
     {timestamps: true},
 )

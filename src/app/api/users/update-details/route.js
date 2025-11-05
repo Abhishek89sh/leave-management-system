@@ -9,7 +9,7 @@ export async function POST(req){
     await connectDB();
     const result = await Users.updateOne(
         {email},
-        {$set: {role, department, head}}
+        {$set: {role: role, department: department, head: head, status: "pending"}}
     )
     if(result.modifiedCount === 1){
         return new Response(JSON.stringify({isSuccess: true, message: "Details Updated"}), {status: 200});

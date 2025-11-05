@@ -24,7 +24,15 @@ export default function page(){
             await Confirm("Complete Signup Process Before Proceeding..", "Action Required", false);
             setLoadingMsg("Redirecting...");
             router.push("/signup/details");
+            return
         }
+
+        if(!userDetails.status || userDetails.status == "pending"){
+            setLoadingMsg("Redirecting...");
+            router.push("/pending");
+            return
+        }
+
         setLoadingMsg("Opening Dashboard");
         router.push(`/dashboard/${userDetails.role.toLowerCase()}`);
     }

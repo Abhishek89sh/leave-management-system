@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import styles from "../../login/login.module.css";
+import { departments, imgs } from "@/content/main";
+import Image from "next/image";
+import { useSelectUser } from "../../../../Context/selectUser/SelectUserProvider";
+import Loader from "../../../../components/loader/Loader";
+import { useConfirm } from "../../../../Context/ConfirmDialog/ConfirmDialogProvider";
+import { useRouter } from "next/navigation";
+import details from "../../../../functions/details";
 
-import styles from '../../login/login.module.css'
-import { departments, imgs } from '@/content/main'
-import Image from 'next/image'
-import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider'
-import Loader from '../../../../components/loader/Loader'
-import { useConfirm } from '../../../../Context/ConfirmDialog/ConfirmDialogProvider'
-import { useRouter } from 'next/navigation'
-import details from '../../../../functions/details'
-
-function page() {
+function Page() {
   const [headId, setHeadId] = useState("");
   const [department, setDepartment] = useState("select");
   const [role, setRole] = useState("select");
@@ -21,239 +19,198 @@ function page() {
   const [errMsgs, setErrMsgs] = useState({
     roleErr: "",
     departmentErr: "",
-    headErr: ""
-  })
-  var [email, setEmail] = useState("");
+    headErr: "",
+  });
+  const [email, setEmail] = useState("");
+  const [timesCalled, setTimesCalled] = useState(-1);
+
   const selectUser = useSelectUser();
   const Confirm = useConfirm();
   const router = useRouter();
-  const selectBtnClick = async ()=>{
+
+  const selectBtnClick = async () => {
     let selectedUser = await selectUser("Select Your Head");
     setHeadId(selectedUser);
-  }
+  };
 
-  const readData = async ()=>{
+  const readData = async () => {
     setLoading(true);
     let data = await details();
-    if(!data){
+    if (!data) {
       await Confirm("Data Not Found Please Login Again.", "NOT FOUND", false);
       router.push("/login");
     }
     setEmail(data.email);
-    if(data.role != "unset"){
-      setRole(data.role);
-    }
-    if(data.department != "unset"){
-      setDepartment(data.department);
-    }
-    if(data.head != "unset"){
+    if (data.role !== "unset") setRole(data.role);
+    if (data.department !== "unset") setDepartment(data.department);
+    if (data.head !== "unset") {
       setHeadId(data.head);
       setValidated(true);
     }
     setLoading(false);
-  }
+  };
 
-  const validateId = async ()=>{
-    if(headId.length != 24){
-      setErrMsgs({...errMsgs, headErr: "Invalid ID"})
+  const validateId = async () => {
+    if (headId.length !== 24) {
+      setErrMsgs({ ...errMsgs, headErr: "Invalid ID" });
       return;
     }
     setLoading(true);
     const res = await fetch("/api/validate-id", {
       method: "POST",
       headers: {
-        "appliaction-type": "application/json"
+        "content-type": "application/json",
       },
-      body: JSON.stringify({id: headId})
-    })
+      body: JSON.stringify({ id: headId }),
+    });
     const resData = await res.json();
-    if(resData.isSuccess){
-      setErrMsgs({...errMsgs, headErr: `Validated: ${resData.data.name}`});
+    if (resData.isSuccess) {
+      setErrMsgs({ ...errMsgs, headErr: `Validated: ${resData.data.name}` });
       setValidated(true);
-    }else{
-      setErrMsgs({...errMsgs, headErr: resData.message});
+    } else {
+      setErrMsgs({ ...errMsgs, headErr: resData.message });
     }
     setLoading(false);
-  }
+  };
 
-  const updateData = async ()=>{
-    setErrMsgs({roleErr: "", departmentErr: "", headErr: ""})
-    if(role == "select"){
-      setErrMsgs({...errMsgs, roleErr: "Select Your Role"});
+  const updateData = async () => {
+    setErrMsgs({ roleErr: "", departmentErr: "", headErr: "" });
+    if (role === "select") {
+      setErrMsgs({ ...errMsgs, roleErr: "Select Your Role" });
       return;
     }
-    if(department == "select"){
-      setErrMsgs({...errMsgs, departmentErr: "Select Your Department"});
+    if (department === "select") {
+      setErrMsgs({ ...errMsgs, departmentErr: "Select Your Department" });
       return;
     }
-    if(validated == false){
-      if(!headId || headId.length != 12){
-        setErrMsgs({...errMsgs, headErr: "Enter a valid Head ID"});
-      }else{
-        setErrMsgs({...errMsgs, headErr: "Validate Head ID First"});
+    if (!validated) {
+      if (!headId || headId.length !== 12) {
+        setErrMsgs({ ...errMsgs, headErr: "Enter a valid Head ID" });
+      } else {
+        setErrMsgs({ ...errMsgs, headErr: "Validate Head ID First" });
       }
       return;
     }
+
     setLoading(true);
     const res = await fetch("/api/users/update-details", {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        role: role,
-        department: department,
-        head: headId
-      })
-    })
-    const resData = await res.json();
-    if(resData.isSuccess && res.status == 200){
-      //redirection
-      await Confirm(resData.message, "Success", false);
+        email,
+        role,
+        department,
+        head: headId,
+      }),
+    });
 
-    }else{
+    const resData = await res.json();
+    if (resData.isSuccess && res.status === 200) {
+      router.push("/pending");
+    } else {
       await Confirm(resData.message, "Error", false);
     }
     setLoading(false);
-  }
+  };
 
+  useEffect(() => {
+    if (timesCalled > 0) setValidated(false);
+    setTimesCalled((prev) => prev + 1);
+  }, [headId]);
 
-  let [timesCalled, setTimesCalled] = useState(-1);
-  useEffect(()=>{
-    if(timesCalled > 0){
-      setValidated(false);
-    }
-    setTimesCalled((prev)=>prev+1)
-  }, [headId])
-
-  useEffect(()=>{
+  useEffect(() => {
     readData();
-  }, [])
+  }, []);
 
   return (
     <div className={styles.container}>
-        {loading && <div className='loaderBox fullTop'><Loader /></div>}
-=======
-import React, { useState } from 'react'
-
-import styles from '../../login/login.module.css'
-import { imgs } from '@/content/main'
-import Image from 'next/image'
-import { useSelectUser } from '../../../../Context/selectUser/SelectUserProvider'
-
-function page() {
-  const [headId, setHeadId] = useState("");
-  const [validated, setValidated] = useState(false);
-  
-  const selectUser = useSelectUser();
-  const selectBtnClick = async ()=>{
-    let selectedUser = await selectUser("Select Your Head");
-    setHeadId(selectedUser)
-  }
-  return (
-    <div className={styles.container}>
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
-        <div className={styles.left}>
-          <Image
-            src={imgs.loginPageImg}
-            alt="Register Illustration"
-            fill
-            className={styles.bgImage}
-          />
+      {loading && (
+        <div className="loaderBox fullTop">
+          <Loader />
         </div>
+      )}
+
+      <div className={styles.left}>
+        <Image
+          src={imgs.loginPageImg}
+          alt="Register Illustration"
+          fill
+          className={styles.bgImage}
+        />
+      </div>
 
       <div className={styles.right}>
         <div className={styles.formBox}>
-<<<<<<< HEAD
           <h1>Details</h1>
-          <p className={styles.subtitle}>
-            Enter Your Details To Continue
-          </p>
+          <p className={styles.subtitle}>Enter Your Details To Continue</p>
 
           <div>
-            <span><label>Role</label></span>
+            <span>
+              <label>Role</label>
+            </span>
             <div className={styles.inputGroup}>
-              <select onChange={(e)=>setRole(e.target.value)} value={role} required>
+              <select onChange={(e) => setRole(e.target.value)} value={role} required>
                 <option value="select">Select Role</option>
                 <option value="Faculty">Faculty</option>
                 <option value="HOD">HOD</option>
                 <option value="Principal">Principal</option>
               </select>
-              <p className='errMsg'>{errMsgs.roleErr}</p>
+              <p className="errMsg">{errMsgs.roleErr}</p>
             </div>
 
-            <span><label>Department</label></span>
+            <span>
+              <label>Department</label>
+            </span>
             <div className={styles.inputGroup}>
-              <select value={department} onChange={(e)=>setDepartment(e.target.value)} required>
+              <select value={department} onChange={(e) => setDepartment(e.target.value)} required>
                 <option value="select">Select Department</option>
-                {departments.map((item, index)=>(
-                  <option key={index} value={item}>{item}</option>
+                {departments.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
                 ))}
               </select>
-              <p className='errMsg'>{errMsgs.departmentErr}</p>
-            </div>
-            
-            <span><label>Your Head</label></span>
-            <div className={styles.inputGroup}>
-              <input type="text" value={headId} onChange={(e)=>setHeadId(e.target.value)} placeholder="Enter ID Manually" required />
-              <p className='errMsg'>{errMsgs.headErr}</p>
+              <p className="errMsg">{errMsgs.departmentErr}</p>
             </div>
 
-            {validated?(
-                <button onClick={updateData} className={styles.loginBtn}>
-=======
-          <h1>Select Your Head</h1>
-          <p className={styles.subtitle}>
-            HOD/Principle who accepts or rejects your Leave Requests
-          </p>
-
-          <div>
+            <span>
+              <label>Your Head</label>
+            </span>
             <div className={styles.inputGroup}>
-              <select required>
-                <option value="">Select Account Type</option>
-                <option value="faculty">Faculty</option>
-                <option value="hod">HOD</option>
-                <option value="principal">Principal</option>
-              </select>
-            </div>
-            
-            <div className={styles.inputGroup}>
-              <input type="text" value={headId} onChange={(e)=>setHeadId(e.target.value)} placeholder="Enter ID Manually" required />
+              <input
+                type="text"
+                value={headId}
+                onChange={(e) => setHeadId(e.target.value)}
+                placeholder="Enter ID Manually"
+                required
+              />
+              <p className="errMsg">{errMsgs.headErr}</p>
             </div>
 
-            {validated?(
-                <button className={styles.loginBtn}>
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
-                    Submit Request
-                </button>
-            ):(
-                <>
-                {headId.length === 0?(
-                    <button onClick={selectBtnClick} className={styles.loginBtn}>
-<<<<<<< HEAD
-                      Search For Head Id
-                    </button>
-                ):(
-                    <button onClick={validateId} className={styles.loginBtn}>
-=======
-                      Search For Id
-                    </button>
-                ):(
-                    <button className={styles.loginBtn}>
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
-                      Validate ID
-                    </button>
+            {validated ? (
+              <button onClick={updateData} className={styles.loginBtn}>
+                Submit Request
+              </button>
+            ) : (
+              <>
+                {headId.length === 0 ? (
+                  <button onClick={selectBtnClick} className={styles.loginBtn}>
+                    Search For Head ID
+                  </button>
+                ) : (
+                  <button onClick={validateId} className={styles.loginBtn}>
+                    Validate ID
+                  </button>
                 )}
-                </>
+              </>
             )}
           </div>
-
-          
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;

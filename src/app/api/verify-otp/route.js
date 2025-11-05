@@ -3,7 +3,6 @@ import { validateOtp } from "../../../../lib/otpStore";
 import Users from "../../../../models/Users";
 
 export async function POST(req){
-<<<<<<< HEAD
     connectDB();
     const {name, email, password, otp} = await req.json();
     let validateResult = validateOtp(email, otp);
@@ -11,27 +10,18 @@ export async function POST(req){
         console.log("OTP MATCHED");
         if(name){
             const isAlreadyRegistered = await Users.findOne({email});
-=======
-    const {name, email, password, otp} = await req.json();
-    let validateResult = validateOtp(email, otp);
-    if(validateResult.status == 200){
-        console.log("OTP MATCHED")
-        if(name){
-            const isAlreadyRegistered = Users.findOne({email});
-            console.log(isAlreadyRegistered)
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
             if(isAlreadyRegistered){
                 return new Response(JSON.stringify({success: false, message: "Email Already Registered."}),{
                     status: 409,
                 })
             }
-            const isRegistered = registerUser(name, email, password);
+            const isRegistered = await registerUser(name, email, password);
             if(!isRegistered){
                 return new Response(JSON.stringify({success: false, message: "Failed to create a new user."}),{
                     status: 400,
                 })
             }else{
-                return new Response(JSON.stringify({success: true, message: "Signup Succesfull"}),{
+                return new Response(JSON.stringify({success: true, id: isRegistered._id, message: "Signup Succesfull"}),{
                     status: 201,
                 })
             }
@@ -41,20 +31,18 @@ export async function POST(req){
 }
 
 const registerUser = async (name, email, password)=>{
-<<<<<<< HEAD
-=======
     await connectDB();
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
     const newUser = await Users.create({
         name: name,
         email: email,
         password: password 
     })
 
+
     if(!newUser || !newUser._id){
         return false;
     }
 
-    return true;
+    return newUser;
 
 }

@@ -13,6 +13,7 @@ export const imgs = {
 }
 
 export const departments = [
+    "All",
     "Computer Engineering", 
     "Information Technology",
     "Civil Engineering",

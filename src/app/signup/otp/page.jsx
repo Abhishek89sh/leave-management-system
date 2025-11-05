@@ -5,6 +5,7 @@ import Otp from '../../../../components/otp/Otp'
 import { useConfirm } from '../../../../Context/ConfirmDialog/ConfirmDialogProvider'
 import { useRouter } from 'next/navigation';
 import Loader from '../../../../components/loader/Loader';
+import { setCookie } from '../../../../functions/cookies';
 
 function page() {
   const Confirm = useConfirm();
@@ -45,7 +46,8 @@ function page() {
     })
     let data = await res.json();
     if(data.success){
-      localStorage.removeItem("signUpData")
+      localStorage.removeItem("signUpData");
+      setCookie({name: "auth", value: data.id, days: 1, path: "/"});
       router.push("/signup/details");
     }else{
       setErrMsg(data.message);

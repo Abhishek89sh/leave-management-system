@@ -3,7 +3,7 @@ import { connectDB } from "../../../../lib/db";
 import Users from "../../../../models/Users";
 
 export async function GET(req){
-    const {searchParams} = new URL(req.url);
+    const {searchParams} =  new URL(req.url);
     const userId = searchParams.get("auth");
     const skips = searchParams.get("skips");
     if(!skips || !userId) return new Response(JSON.stringify({isSuccess: false, message: "Invalid Req URL"}), {status: 400});

@@ -4,11 +4,7 @@
 import styles from '@/app/login/login.module.css'
 import { useEffect, useState } from "react";
 import Loader from "./loader/Loader";
-<<<<<<< HEAD
 import { decryptData, encryptData } from '../functions/protectDataClient';
-=======
-import { decryptData, encryptData } from '../functions/protectData';
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
 import { useRouter } from 'next/navigation';
 import { useConfirm } from '../Context/ConfirmDialog/ConfirmDialogProvider';
 import { sendOtp } from '../functions/sendOtp';
@@ -110,12 +106,7 @@ export default function SignUpForm() {
       if(resData.success){
         router.push("/signup/otp");
       }else{
-<<<<<<< HEAD
         await Confirm("Something went wrong, OTP not sent...", "Error", false);
-=======
-        await Confirm("Something went wrong, Email not sent...", "Error", false);
-        router.push("/signup/otp");
->>>>>>> c9618678ddf11905c2c76c30d3bd9ba25c159573
         setLoading(false)
       }
       setLoadingMsg("Loading...");
