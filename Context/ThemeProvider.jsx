@@ -5,7 +5,7 @@ import React, { createContext, useEffect, useState } from 'react'
 export const ThemeContext = createContext();
 
 function ThemeProvider({children}) {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(null);
   
   const toggleTheme = async ()=>{
     if(theme === "light"){
@@ -23,12 +23,10 @@ function ThemeProvider({children}) {
       setTheme(customTheme);
       return;
     }
-    let currentTheme = window.getComputedStyle(document.body).backgroundColor;
-    if(currentTheme === "rgb(255, 255, 255)"){
-      setTheme("light");
-    }else{
-      setTheme("dark");
-    }
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    console.log(systemTheme)
+    setTheme(systemTheme);
+    localStorage.setItem("Theme", systemTheme);
   }
 
   useEffect(()=>{
@@ -44,6 +42,8 @@ function ThemeProvider({children}) {
   useEffect(()=>{
     checkTheme();
   }, [])
+
+  if(!theme) return <div style={{ visibility: "hidden" }}>{children}</div>;;
   
   return (
     <>

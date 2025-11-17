@@ -153,9 +153,9 @@ function Page() {
             <div className={styles.inputGroup}>
               <select onChange={(e) => setRole(e.target.value)} value={role} required>
                 <option value="select">Select Role</option>
-                <option value="Faculty">Faculty</option>
-                <option value="HOD">HOD</option>
-                <option value="Principal">Principal</option>
+                <option value="faculty">Faculty</option>
+                <option value="hOD">HOD</option>
+                <option value="principal">Principal</option>
               </select>
               <p className="errMsg">{errMsgs.roleErr}</p>
             </div>

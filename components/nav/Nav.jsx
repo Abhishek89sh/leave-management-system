@@ -21,7 +21,6 @@ import { useRouter } from 'next/navigation'
 function Nav({type}) {
   const router = useRouter();
   const {theme, toggleTheme} = useContext(ThemeContext);
-  const [barIconColor, setBarIconColor] = useState();
   const {show, setShow} = useContext(NavControlerContext);
   return (
     <div className={styles.nav}>

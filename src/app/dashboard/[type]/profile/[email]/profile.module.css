@@ -1,0 +1,141 @@
+.profileContainer {
+  /* background-color: var(--background); */
+  color: var(--p-text);
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.profileCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  height: max-content;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+  margin-top: -60px;
+}
+
+/* HEADER */
+.profileHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImage {
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
+  color: var(--primary);
+}
+
+.userRole {
+  color: var(--s-text);
+  font-size: 0.95rem;
+}
+
+/* DETAILS */
+.profileDetails {
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+  margin-top: 1rem;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.label {
+  font-weight: 600;
+  color: var(--p-text);
+}
+
+.value {
+  color: var(--s-text);
+}
+
+/* Auto capitalize keys */
+.capitalize {
+  text-transform: capitalize;
+}
+
+.success {
+  color: var(--success);
+}
+
+/* ACTIONS */
+.profileActions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin: 0.4rem;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.primary:hover {
+  background-color: var(--secondary);
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.secondary:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+/* THEME TOGGLE */
+.themeToggle {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.themeToggle button {
+  background: none;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.themeToggle button:hover {
+  background-color: var(--primary);
+  color: #fff;
+}

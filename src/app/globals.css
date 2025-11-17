@@ -11,6 +11,8 @@
 }
 
 .dark{
+  --primary: #81c784; 
+  --secondary: #2e7d32;
   --background: #121212;
   --surface: #1e1e1e;
   --p-text: #e0e0e0;

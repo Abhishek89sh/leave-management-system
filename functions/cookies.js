@@ -1,8 +1,5 @@
 "use client"
 
-import { encryptData } from "./protectData";
-import { decryptData } from "./protectDataClient";
-
 export function setCookie({name, value, days, path}){
     const maxAge = days*24*60*60
     document.cookie = `${name}=${value}; max-age=${maxAge}; path=${path};`

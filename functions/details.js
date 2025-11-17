@@ -1,9 +1,10 @@
 "use client"
 
-import { getCookie } from "./cookies";
+import { getCookie, setCookie } from "./cookies";
+
+var userDetails = null;
 
 export default async function details(){
-    var userDetails = null;
     if(userDetails){
         console.log("Already Fetched");
         return userDetails;
@@ -12,8 +13,14 @@ export default async function details(){
     if(!userAuthToken){
         return null
     }
+    setCookie({name: "auth", value: userAuthToken, days: 1, path: "/"});
     const res = await fetch(`/api/users/user-details?auth=${userAuthToken}`);
     const resData = await res.json();
-    userDetails = resData.data;
-    return resData.data;
+    if(resData.isSuccess){
+        userDetails = resData.data;
+        return resData.data;
+    }else{
+        return false
+    }
+    
 }

@@ -33,12 +33,11 @@ export async function POST(req){
 const registerUser = async (name, email, password)=>{
     await connectDB();
     const newUser = await Users.create({
-        name: name,
-        email: email,
-        password: password 
+        name: name.trim(),
+        email: email.trim(),
+        password: password.trim() 
     })
-
-
+    
     if(!newUser || !newUser._id){
         return false;
     }

@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import { connectDB } from "../lib/db";
+
+connectDB();
 
 const UsersSchema = new mongoose.Schema(
     {
@@ -6,33 +9,33 @@ const UsersSchema = new mongoose.Schema(
             type: String,
             required : true,
             trim: true,
-            maxlength: 50
+            maxLength: 50
         },
         email: {
             type: String,
             required: true,
             unique: true,
             trim: true,
-            maxlength: 100,
+            maxLength: 100,
         },
         password: {
             type: String,
             required: true,
-            maxlength: 300,
+            maxLength: 300,
         },
         department: {
             type: String,
-            maxlength: 70,
+            maxLength: 70,
             default: "unset"
         },
         role: {
             type: String,
-            maxlength: 20,
+            maxLength: 20,
             default: "unset"
         },
         head: {
             type: String,
-            maxlength: 100,
+            maxLength: 100,
             default: "unset"
         },
         manageRequests: {
@@ -41,7 +44,7 @@ const UsersSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            default: "pending"
+            default: "initial"
         }
     },
     {timestamps: true},

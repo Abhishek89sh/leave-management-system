@@ -13,6 +13,7 @@ function DataTable({
     onReject = () => {},
     onRowClick = () => {},
 }) {
+  if(!data) return <div className='midErr'><p>Loading...</p></div>
   if(data.length === 0) return <div className='midErr'><p>No Data Available</p></div>
 
   const headers = Object.keys(data[0]);
@@ -26,19 +27,20 @@ function DataTable({
                     {headers.map((item, index)=>(
                         <th key={index}>{item.toUpperCase()}</th>
                     ))}
-                    {showButtons || showOneBtn && <th>ACTION</th>}
+                    {showButtons && <th>ACTION</th>}
+                    {showOneBtn && <th>ACTION</th>}
                 </tr>
             </thead>
             <tbody>
                 {data.map((item, index)=>(
-                    <tr onClick={onRowClick} key={index}>
+                    <tr key={index}>
                         {headers.map((header, index)=>(
-                            <td key={index}>{item[header]}</td>
+                            <td onClick={()=>onRowClick(item)} key={index}>{item[header]}</td>
                         ))}
                         {showButtons && (
                             <td className={styles.btns}>
-                                <button className={styles.accept} onClick={onAccept}>{acceptText}</button>
-                                <button className={styles.reject} onClick={onReject}>{rejectText}</button>
+                                <button className={styles.accept} onClick={()=>onAccept(item)}>{acceptText}</button>
+                                <button className={styles.reject} onClick={()=>onReject(item)}>{rejectText}</button>
                             </td>
                         )}
                         {showOneBtn && (

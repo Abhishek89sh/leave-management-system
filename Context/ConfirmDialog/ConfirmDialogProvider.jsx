@@ -7,11 +7,11 @@ import styles from './confirm-dialog.module.css'
 export const confirmDialogContext = createContext();
 
 function ConfirmDialogProvider({children}) {
-  const [confirmData, setConfirmData] = useState({message: "", heading: "", isOpen: false, resolve: null, showCancel: true});
+  const [confirmData, setConfirmData] = useState({message: "", heading: "", acceptBtnTxt: "", isOpen: false, resolve: null, showCancel: true});
 
-  const confirm = ( message, heading = "Confirm Action", showCancel = true)=>{
+  const confirm = ( message, heading = "Confirm Action", showCancel = true, acceptBtnTxt = "Ok")=>{
     return new Promise((resolve)=>{
-        setConfirmData({message, heading, isOpen: true, resolve, showCancel})
+        setConfirmData({message, heading, isOpen: true, resolve, showCancel, acceptBtnTxt})
     })
   }
 
@@ -33,7 +33,7 @@ function ConfirmDialogProvider({children}) {
                     <h3>{confirmData.heading || "Confirm Action"}</h3>
                     <p>{confirmData.message || "Are you sure you want to continue"}</p>
                     <span>
-                        <button onClick={handleAccept}>Ok</button>
+                        <button onClick={handleAccept}>{confirmData.acceptBtnTxt}</button>
                         {confirmData.showCancel && <button onClick={handleReject}>Cancel</button>}
                     </span>
                 </div>

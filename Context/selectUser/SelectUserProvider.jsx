@@ -11,7 +11,6 @@ import { getCookie } from '../../functions/cookies';
 const SelectUserContext = createContext();
 
 function SelectUserProvider({children}) {
-  const [selectedUser, setSelectedUser] = useState(null);
   const [resolveFun, setResolveFun] = useState(null)
   const [showBox, setShowBox] = useState(false);
   const [heading, setHeading] = useState("Select User");
@@ -22,10 +21,30 @@ function SelectUserProvider({children}) {
         setShowBox(true);
         setResolveFun(()=>resolve);
         setHeading(headingg);
-        if(headingg === "Select Your Head"){
+        if(headingg == "Select User"){
+          fetchUsers();
+        }else{
           fetchHeads();
         }
     })
+  }
+
+  const fetchUsers = async ()=>{
+    setData(null);
+    const auth = getCookie("auth");
+    const res = await fetch(`/api/users/fetch-users?auth=${auth}&status=active&isAll=1`);
+    const data = await res.json();
+    if(data.isSuccess){
+      let tempData = data.data;
+      let newData = [];
+      tempData.forEach((item)=>{
+        newData.push({id: item._id, name: item.name, email: item.email, department: item.department, role: item.role});
+      })
+      setData(newData);
+    }else{
+      setErrMsg(data.message);
+      setData([]);
+    }
   }
 
   const fetchHeads = async ()=>{
@@ -62,7 +81,7 @@ function SelectUserProvider({children}) {
                         {data.length > 0?<>
                           <DataTable onAccept={addBtnClick} showOneBtn={true} acceptText='Add' data={data} />
                         </>:<div><p>{errMsg}</p></div>}
-                      </>:<div className='loaderBox'><Loader /></div>}
+                      </>:<div className='loaderBox fullScreen'><Loader /></div>}
                     </section>
                 </div>
             </div>
