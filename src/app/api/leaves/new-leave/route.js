@@ -13,7 +13,6 @@ export async function POST(req){
     if(!data.days) errRes = {isSuccess: false, message: "Unable to read days", status: 401};
     if(!data.purpose) errRes = {isSuccess: false, message: "Unable to read purpose", status: 401};
     if(!data.date) errRes = {isSuccess: false, message: "Unable to read date", status: 401};
-    if(!data.managedBy) errRes = {isSuccess: false, message: "Unable to read managedBy", status: 401};
     if(!data.adjustments) errRes = {isSuccess: false, message: "Unable to read adjustments", status: 401};
     if(errRes) return new Response(JSON.stringify({isSuccess: false, message: errRes.message}), {status: errRes.status});
     

@@ -60,15 +60,26 @@ function Aside({ type, userName, manageRequests }) {
             {btns.map((item, index) => (
               <React.Fragment key={index}>
                 {index === 1 && manageRequests && (
-                  <div
-                    onClick={() => {
-                      router.push(`/dashboard/${type}/registrations`);
-                      setTimeout(() => setShow(false), 500);
-                    }}
-                  >
-                    <span><RiPagesLine size={25} /></span>
-                    <p>Registrations</p>
-                  </div>
+                  <>
+                    <div
+                      onClick={() => {
+                        router.push(`/dashboard/${type}/registrations`);
+                        setTimeout(() => setShow(false), 500);
+                      }}
+                    >
+                      <span><RiPagesLine size={25} /></span>
+                      <p>Registrations</p>
+                    </div>
+                    <div
+                      onClick={() => {
+                        router.push(`/dashboard/${type}/leave-requests`);
+                        setTimeout(() => setShow(false), 500);
+                      }}
+                    >
+                      <span><RiPagesLine size={25} /></span>
+                      <p>Leave Requests</p>
+                    </div>
+                  </>
                 )}
 
                 <div

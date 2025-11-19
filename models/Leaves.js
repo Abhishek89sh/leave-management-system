@@ -54,7 +54,11 @@ const LeavesSchema = new mongoose.Schema(
         },
         managedBy: {
             type: String,
-            required: true,
+            maxLength: 30,
+        },
+        status: {
+            type: String,
+            default: "initial",
             maxLength: 30,
         },
         adjustments: [
@@ -84,7 +88,7 @@ const LeavesSchema = new mongoose.Schema(
                 status: {
                     type: String,
                     trim: true,
-                    default: "Pending",
+                    default: "pending",
                 }
             }
         ]

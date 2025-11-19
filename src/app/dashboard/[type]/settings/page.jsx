@@ -1,22 +1,48 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./settings.module.css";
 import { FiMail, FiGlobe, FiUser } from "react-icons/fi";
 import { ThemeContext } from "../../../../../Context/ThemeProvider";
+import details from "../../../../../functions/details";
+import { deleteCookie } from "../../../../../functions/cookies";
+import { useRouter } from "next/navigation";
 
 const SettingsPage = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const router = useRouter();
 
   const [user, setUser] = useState({
-    name: "Abhishek Sharma",
-    email: "abhishek@example.com",
-    image: "/assets/images/developer.jpeg",
+    name: "",
+    email: "",
+    image: "/assets/images/user.png",
   });
 
+  const fetchUserData = async ()=>{
+    const data = await details();
+    let image;
+    if(data.profile){
+      image= data.profile
+    }
+    setUser({
+      name: data.name,
+      email: data.email,
+      image: image
+    })
+  }
+
+  const logoutUser = ()=>{
+    deleteCookie("auth");
+    router.push("/");
+  }
+
   const handleImageChange = () => {
-    alert("Change image clicked! (Add file upload here)");
+    
   };
+
+  useEffect(()=>{
+    fetchUserData();
+  }, [])
 
 
   return (
@@ -79,6 +105,7 @@ const SettingsPage = () => {
               type="checkbox"
             />
           </div>
+          <button onClick={logoutUser} className={styles.logoutBtn}>Log Out</button>
       </div>
     </div>
     </div>

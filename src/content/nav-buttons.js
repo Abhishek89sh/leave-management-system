@@ -5,6 +5,7 @@ import { FaMessage, FaObjectGroup, FaUserGroup } from "react-icons/fa6";
 
 export const facultyNavBtns = [
     {name: "Dashboard", onClick: "/dashboard/faculty", icon: <FaHome size={25} />},
+    {name: "Adjustments", onClick: "/dashboard/faculty/adjustement-requests", icon: <RiPagesLine size={25} />},
     {name: "New Leave", onClick: "/dashboard/faculty/new-leave", icon: <FaPlus size={25} />},
     {name: "My Leaves", onClick: "/dashboard/faculty/my-leaves", icon: <FaHouseUser size={25} />},
     {name: "Settings", onClick: "/dashboard/faculty/settings", icon: <IoSettings size={25} />},
@@ -12,7 +13,7 @@ export const facultyNavBtns = [
 
 export const principalNavBtns = [
     {name: "Dashboard", onClick: "/dashboard/principal", icon: <FaHome size={25} />},
-    {name: "Requests", onClick: "/dashboard/principal/leave-requests", icon: <RiPagesLine size={25} />},
+    // {name: "Requests", onClick: "/dashboard/principal/leave-requests", icon: <RiPagesLine size={25} />},
     // {name: "New Leave", onClick: "/dashboard/principal/new-leave", icon: <FaPlus size={25} />},
     {name: "My Leaves", onClick: "/dashboard/principal/my-leaves", icon: <FaHouseUser size={25} />},
     {name: "Contact Admin", onClick: "/dashboard/principal/contact-admin", icon: <FaMessage size={25} />},
@@ -21,7 +22,7 @@ export const principalNavBtns = [
 
 export const hodNavBtns = [
     {name: "Dashboard", onClick: "/dashboard/hod", icon: <FaHome size={25} />},
-    {name: "Requests", onClick: "/dashboard/hod/leave-requests", icon: <RiPagesLine size={25} />},
+    {name: "Adjustments", onClick: "/dashboard/hod/adjustement-requests", icon: <RiPagesLine size={25} />},
     {name: "New Leave", onClick: "/dashboard/hod/new-leave", icon: <FaPlus size={25} />},
     {name: "My Leaves", onClick: "/dashboard/hod/my-leaves", icon: <FaHouseUser size={25} />},
     {name: "Contact Admin", onClick: "/dashboard/principal/contact-admin", icon: <FaMessage size={25} />},

@@ -25,7 +25,9 @@ function DataTable({
             <thead>
                 <tr>
                     {headers.map((item, index)=>(
-                        <th key={index}>{item.toUpperCase()}</th>
+                        <React.Fragment key={index}>
+                            {item === "id" || item === "_id" ? <></> : <th key={index}>{item.toUpperCase()}</th>}
+                        </React.Fragment>
                     ))}
                     {showButtons && <th>ACTION</th>}
                     {showOneBtn && <th>ACTION</th>}
@@ -35,7 +37,10 @@ function DataTable({
                 {data.map((item, index)=>(
                     <tr key={index}>
                         {headers.map((header, index)=>(
-                            <td onClick={()=>onRowClick(item)} key={index}>{item[header]}</td>
+                            <React.Fragment key={index}>
+                                {header === "id" || header === "_id" ? <></> : <td onClick={()=>onRowClick(item)} key={index}>{item[header]}</td>}
+                            </React.Fragment>
+                            
                         ))}
                         {showButtons && (
                             <td className={styles.btns}>

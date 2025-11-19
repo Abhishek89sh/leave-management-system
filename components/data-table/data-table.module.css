@@ -13,7 +13,9 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: max-content;
 }
+
 
 .tableContainer table th,
 .tableContainer table td {

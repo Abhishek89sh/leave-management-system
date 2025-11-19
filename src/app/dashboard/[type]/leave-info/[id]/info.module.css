@@ -1,0 +1,154 @@
+.container {
+  padding: 20px;
+  max-width: 750px;
+  margin: auto;
+  background: var(--surface);
+  border-radius: 16px;
+  margin-top: -30px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--p-text);
+}
+
+.subHeading {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Leave Card */
+.card {
+  background: var(--background);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00000015;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--s-text);
+}
+
+.value {
+  color: var(--p-text);
+  font-weight: 500;
+}
+
+/* Status Chips */
+.status {
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.approved {
+  background: #d1ffd8;
+  color: #0e7a20;
+}
+
+.rejected {
+  background: #ffd6d6;
+  color: #b40000;
+}
+
+.pending {
+  background: #fff4cc;
+  color: #b88600;
+}
+
+/* Adjustments */
+.adjustContainer {
+  margin-top: 10px;
+}
+
+.adjustCard {
+  background: var(--background);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.adjustRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.adjustLabel {
+  font-size: 14px;
+  color: var(--s-text);
+}
+
+.adjustValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--p-text);
+}
+
+.noAdjust {
+  color: var(--s-text);
+  font-style: italic;
+  padding: 10px 0;
+}
+
+/* Approve / Reject Buttons */
+.actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.approveBtn,
+.rejectBtn {
+  width: 48%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.approveBtn {
+  background: var(--success);
+}
+
+.approveBtn:hover {
+  opacity: 0.9;
+}
+
+.rejectBtn {
+  background: var(--error);
+}
+
+.rejectBtn:hover {
+  opacity: 0.9;
+}
+
+.notFound {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
+  color: var(--s-text);
+}
