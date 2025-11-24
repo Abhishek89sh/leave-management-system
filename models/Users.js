@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import { connectDB } from "../lib/db";
-
-connectDB();
 
 const UsersSchema = new mongoose.Schema(
     {

@@ -34,5 +34,6 @@ export const adminNavBtns = [
     {name: "Pending", onClick: "/dashboard/admin/leave-requests", icon: <RiPagesLine size={25} />},
     {name: "Users", onClick: "/dashboard/admin/users", icon: <FaUserGroup size={25} />},
     {name: "All Leaves", onClick: "/dashboard/admin/all-leaves", icon: <FaObjectGroup size={25} />},
+    {name: "Contacts", onClick: "/dashboard/admin/contacts", icon: <FaMessage size={25} />},
     {name: "Settings", onClick: "/dashboard/admin/settings", icon: <IoSettings size={25} />},
 ]

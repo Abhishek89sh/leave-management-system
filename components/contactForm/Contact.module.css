@@ -1,0 +1,49 @@
+
+/* CONTACT FORM */
+.contactForm {
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 14px;
+  background: var(--surface);
+  color: var(--p-text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.textarea {
+  resize: vertical;
+  height: 120px;
+}
+
+.contactBtn {
+  background: var(--primary);
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.contactBtn:hover {
+  background: var(--secondary);
+}
+
+.errMsg{
+    text-align: left;
+    margin-left: 10px;
+}
